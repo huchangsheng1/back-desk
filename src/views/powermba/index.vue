@@ -59,10 +59,11 @@
                 label="操作">
                  <template slot-scope="scope">
                     <el-button  type="primary" icon="el-icon-edit" @click="altername(scope.row.p_id)">修改权限名</el-button>
+                    <el-button v-if="scope.row.purl"  type="primary" icon="el-icon-edit" @click="updatepow(scope.row.p_id,scope.row.purl,scope.row.p_name)">更新权限信息</el-button>
                 </template>
             </el-table-column>
             </el-table>     
-
+            <!-- 添加 -->
             <el-dialog
                 center    
                 title="添加权限操作"
@@ -117,13 +118,53 @@
                     <el-button type="primary" @click="addpowerreq">确 定</el-button>
                 </span>
             </el-dialog>
-   
+            <!-- 修改更新 -->
+
+             <el-dialog
+                center    
+                title="更新权限操作"
+                :visible.sync="dialogVisible2"
+                width="80%" 
+            >  
+                <el-input 
+                   :disabled = "disabless"
+                   ref="powerurl"
+                   style="display:block;width:50%;margin:0 auto"
+                    placeholder="请输入更新权限C/A(添加菜单可不填)"
+                    v-model="powerurl2"
+                    clearable>
+                </el-input>
+                <div align=center>
+                <p><a>选择菜单(不选菜单则是顶级菜单)：</a></p>
+                <br>
+                </div>
+                <div align=center>
+                    <el-select   v-model="powerval4" style="width:25%"  placeholder="二级菜单">
+                        <el-option
+                        loading = true
+                        v-for="(item,index) in powerOption4"
+                        :key="index"
+                        :label="item.label"
+                        :value="item.value"
+                        :data-key = "item.p_key"
+                        >
+                        </el-option>
+                    </el-select>
+                </div>
+                
+                  <span slot="footer" class="dialog-footer">
+                    <el-button @click="dialogVisible2 = false;powerval4 = '';powname2='' ">取 消</el-button>
+                    <el-button type="primary" @click="addpowerreq2">确 定</el-button>
+                 </span>
+                 
+                 
+            </el-dialog>
     </div>
 </template>
 
 
 <script >
-import {powershow,poweralter,powermenu,powerpadd} from '@/api/power';
+import {powershow,poweralter,powermenu,powerpadd,powerupdate} from '@/api/power';
 
 export default {
     
@@ -142,6 +183,13 @@ export default {
             powerOption2 : [],
             disabless : false,
             munedan : 0,
+            //更新
+            dialogVisible2 : false,
+            powerurl2 : '',
+            powerval4 : '',
+            powerOption4 : [],
+            updatapid : '',
+            powname2 : ''
         }
     },
    mounted() {
@@ -268,6 +316,60 @@ export default {
             this.disabless = false;
             this.munedan =2
        },
+       //更新 
+       updatepow(p_id,purl,p_name) {
+           this.dialogVisible2 = true;
+           this.updatapid = p_id;
+           this.powname2 = p_name;
+            powermenu().then(res => {
+                res.data.forEach(el  => {
+                    if (el.p_key != 0) {
+                        this.powerOption4.push(el);
+                    }
+                });
+            })
+            this.powerurl2 = purl;
+       },
+       addpowerreq2() {
+           console.log(this.powerurl2,this.powerval4,this.updatapid,this.powname2);
+            if (!this.powerurl2 || !/[A-z]+\/[A-z]/.test(this.powerurl2)) {
+                this.$notify.error({
+                    title: '添加失败',
+                    message: '权限url不能为空或者不符合格式',
+                });
+                return;
+            }
+            let powobj = {
+                "purl" :this.powerurl2,
+                "p_name":this.powname2
+            }
+            if (this.powerval4) {
+                powobj['p_key'] = this.powerval4;
+            }
+            this.$confirm('确定修改该权限?', '权限修改提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+                }).then(reslut => {
+                    console.log(powobj);
+                    powerupdate(powobj).then(res => {
+                        if (res.code == 200) {
+                            this.$notify({
+                                title: '修改成功',
+                                message: '修改成功',
+                            });
+                            window.location.reload('');
+                        }else if (res.code == 503) {
+                            this.$notify({
+                                title: '修改失败',
+                                message: '请从新调试，或者刷新试试',
+                            });
+                        }
+                    })
+                })
+            
+       },
+       
    }
 
 }

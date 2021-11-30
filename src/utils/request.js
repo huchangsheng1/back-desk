@@ -72,7 +72,6 @@ service.interceptors.response.use(
           type: 'error',
           duration: 5 * 1000
         })
-        localStorage.removeItem('User-Token');
       }
 
       return data;

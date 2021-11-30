@@ -30,17 +30,17 @@
         原始密码：<el-input
           placeholder="请输入原始密码"
           v-model="inputpwd1"
-          clearable>
+          clearable show-password>
         </el-input><br><br>
         新密码：<el-input
           placeholder="请输入新密码"
           v-model="inputpwd2"
-          clearable>
+          clearable show-password>
         </el-input><br><br>
         确认密码：<el-input
           placeholder="确认密码"
           v-model="inputpwd3"
-          clearable>
+          clearable show-password>
         </el-input><br><br>
         <span slot="footer" class="dialog-footer">
           <el-button @click="dialogVisible = false">取 消</el-button>

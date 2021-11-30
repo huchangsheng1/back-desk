@@ -198,7 +198,7 @@ export default {
           this.dialogFormVisible = false;
         } else if (res.code == 507) {
           this.$notify.error({
-            title: "Error",
+            title: "错误",
             message: `${res.mes}`,
           });
           (this.form.phone = ""), (this.form.name = ""), (this.form.rid = "");
@@ -223,9 +223,10 @@ export default {
             type: "success",
           });
           this.dialogVisible = false;
+          window.location.reload('');
         } else if (res.code == 503) {
           this.$notify.error({
-            title: "Error",
+            title: "错误",
             message: `${res.mes}`,
           });
           this.dialogVisible = false;
@@ -260,16 +261,17 @@ export default {
           });
           this.alterdialog = false;
           this.editUserFormData.level = "";
+          window.location.reload('');
         } else if (res.code == 503) {
           this.$notify.error({
-            title: "Error",
+            title: "错误",
             message: `${res.mes}`,
           });
           this.alterdialog = false;
           this.editUserFormData.level = "";
         } else if (res.code == 505) {
           this.$notify.error({
-            title: "Error",
+            title: "错误",
             message: `${res.mes}`,
           });
           this.alterdialog = false;

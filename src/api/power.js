@@ -42,3 +42,14 @@ export function power() {
       data
     })
   }
+
+  //更新权限
+
+  export function powerupdate(data) {
+    console.log(data);
+    return request({
+      url: '/power/palter',
+      method: 'post',
+      data
+    })
+  }
