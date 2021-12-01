@@ -215,6 +215,7 @@ export default {
         topicLi: {
             radio1: '1',
         },
+        
         // 考试信息
         testData: {
             uid: "",
@@ -265,7 +266,6 @@ export default {
       if (this.active-- < 0) this.active = 0;
     },
     next() {
-        console.log(this.single[0]);
       if (this.active++ > 2) this.active = 0;
     },
 
@@ -307,12 +307,13 @@ export default {
         for (let s = 0; s < this.mulit.length; s ++) {
             let contents = (('A' + '.' + this.mulit[s]['A']) + ',' + ('B' + '.' + this.mulit[s]['B']) + ',' + ('C' + '.' + this.mulit[s]['C']) + ',' + ('D' + '.' + this.mulit[s]['D']))
             let multi_answer = this.mulitLi.check.splice(4, this.mulitLi.check.length);
+            // console.log(multi_answer);
             let manswer = multi_answer.join('');
             let singleObj = {
                 tid: this.mulit[s]['tid'],
                 stem: this.mulit[s]['t_stem'],
                 content: contents,
-                answer: manswer,
+                answer: this.mulit[s]['t_answer'],
                 score: this.mulit[s]['t_score']
             }
             this.mulittopics['topics'].push(singleObj)
@@ -370,25 +371,26 @@ export default {
             fullscore: this.testData.fullscore,
             testname: this.testData.examName
         }
-        confirm(examinfo).then(
-            res => {
-                if (res.code == 206) {
-                    this.$notify({
-                        title: "success",
-                        message: `${res.msg}`,
-                        type: "success",
-                    });
-                    this.active = 3;
-                    this.$router.replace('/testmanager');
-                } else {
-                    this.$notify.error({
-                        title: "Error",
-                        message: `${res.msg}`,
-                    });
-                    this.active = 0;
-                }
-            }
-        )
+        
+        // confirm(examinfo).then(
+        //     res => {
+        //         if (res.code == 206) {
+        //             this.$notify({
+        //                 title: "success",
+        //                 message: `${res.msg}`,
+        //                 type: "success",
+        //             });
+        //             this.active = 3;
+        //             this.$router.replace('/testmanager');
+        //         } else {
+        //             this.$notify.error({
+        //                 title: "Error",
+        //                 message: `${res.msg}`,
+        //             });
+        //             this.active = 0;
+        //         }
+        //     }
+        // )
 
     },
     cancel() {

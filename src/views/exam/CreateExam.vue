@@ -231,6 +231,7 @@
 
              <el-dialog title="填空题" :visible.sync="dialogpack">
                 <el-form :model="form" class="form">
+                    <el-form-item label="提示：" :label-width="formLabelWidth">三个 _ 为空</el-form-item>
                     <el-form-item label="题目" :label-width="formLabelWidth">
                     <el-input v-model="form.title" class="topicInput" type="textarea" :rows="1" autocomplete="off" placeholder="请输入题目"></el-input>
                     </el-form-item>

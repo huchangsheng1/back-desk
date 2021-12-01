@@ -307,7 +307,7 @@ export default {
           if (keyword == '') {
             course_render({page:this.pageNo}).then(
                 res => {
-                  console.log(res);
+                  // console.log(res);
                   this.courseData = res.data
                   this.pagetotall = (res['turnpages'] * 10)
                   
@@ -358,7 +358,7 @@ export default {
       //确认创建课程
       foundcourse(){
         this.dialogVisible = false
-        console.log(this.startandenddate, this.coursegname, this.textarea, this.windimgsrc);
+        // console.log(this.startandenddate, this.coursegname, this.textarea, this.windimgsrc);
         course_found({
             course_name: this.coursename,
             gname: this.coursegname,
@@ -406,7 +406,7 @@ export default {
         // 编辑数据回显
         course_rendereditcourses({course_id}).then(
           res => {
-            console.log(res.data,'编辑回显');
+            // console.log(res.data,'编辑回显');
             this.coursegname = res.data.gid
             this.coursename = res.data.course_name;
             this.startandenddate = [res.data.start_time +  ' 00:00:00', res.data.end_time + ' 00:00:00'];
@@ -432,7 +432,7 @@ export default {
             descs: this.textarea
         }).then(
           res => {
-            console.log(res);
+            // console.log(res);
             if (res.code == 200) {
                this.$notify({
                   title: '成功',
@@ -463,7 +463,7 @@ export default {
         this.dialogelete = false;
         course_deletecourses({course_id: this.course_nub}).then(
           res => {
-            console.log(res,'删除');
+            // console.log(res,'删除');
             if (res.code == 200) {
                this.$notify({
                   title: '成功',
@@ -499,7 +499,7 @@ export default {
     mounted(){
         course_render({page:this.pageNo}).then(
           res => {
-            console.log(res);
+            // console.log(res);
             this.courseData = res.data
             this.pagetotall = (res['turnpages'] * 10)
             

@@ -129,7 +129,7 @@ export default {
           
          grade_find({page, keyword}).then(
           res => {
-            console.log(res,'123');
+            // console.log(res,'123');
             this.gradeData = res.data.desc
            
           }

@@ -163,6 +163,7 @@ export default {
       this.listLoading = true;
       showquestions({page: this.page, keyword: this.keyword}).then((res) => {
         this.list.length = 0;
+        
         if (res.topicsinfo[0]["1"]) {
           for (let x = 0; x < res.topicsinfo[0]["1"].length; x++) {
             let t_names = res.topicsinfo[0]["1"][x]["t_names"].substr(0,res.topicsinfo[0]["1"][x]["t_names"].indexOf("|"));

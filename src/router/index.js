@@ -111,25 +111,25 @@ export const constantRoutes = [
     children: [
       {
         path: 'list',
-        component: () => import('@/views/work/index'), // Parent router-view
+        component: () => import('@/views/table/index'), // Parent router-view
         name: 'Menu1',
         meta: { title: '作业列表' },
       },
       
     ]
   },
-  {
-    path: '/Publishjob',
-    component: Layout,
-    name: 'Publishjob',
-    component: () => import('@/views/work/Publishjob'), // Parent router-view
-  },
-  {
-    path: '/Correctingwork',
-    component: Layout,
-    name: 'Correctingwork',
-    component: () => import('@/views/work/Correctingwork'), // Parent router-view
-  },
+  // {
+  //   path: '/Publishjob',
+  //   component: Layout,
+  //   name: 'Publishjob',
+  //   component: () => import('@/views/work/Publishjob'), // Parent router-view
+  // },
+  // {
+  //   path: '/Correctingwork',
+  //   component: Layout,
+  //   name: 'Correctingwork',
+  //   component: () => import('@/views/work/Correctingwork'), // Parent router-view
+  // },
   {
     path: '/testmanager',
     component: Layout,

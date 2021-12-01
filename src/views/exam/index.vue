@@ -233,6 +233,7 @@ export default {
     this.listLoading = true;
     personal().then((res) => {  // 返回个人信息
       this.userinfo = res;
+      
     });
     showexam({ page: this.pager }).then((res) => {  // 返回所有考试
       let examArr = [];
