@@ -90,7 +90,7 @@
       <!-- 创建课程dm -->
 
        <el-dialog title="创建课程" :visible.sync="dialogVisible" width="50%" :before-close="handleClose" close-on-click-modal>
-          <div class="found_course_info">
+          <div class="found_course_info" style="margin-bottom: 20px 0">
               <el-select v-model="coursegname" placeholder="请选择授课班级">
                 <el-option
                 v-for="item in coursegnamedata"
@@ -103,10 +103,10 @@
          <!-- //授课班级 -->
           
           <!-- 课程名称 -->
-          <el-input  v-model="coursename" placeholder="课程名称"></el-input>
+          <el-input  v-model="coursename" placeholder="课程名称" style="margin: 30px 0;width: 200px"></el-input>
 
           <!-- 课程起止时间 -->
-           <div class="block">
+           <div class="block" style="margin: 30px 0;width: 200px">
                 <el-date-picker
                     v-model="startandenddate"
                     type="datetimerange"
@@ -131,7 +131,10 @@
 
 
           <div class="courseupload">
+            <a class="filelist">
               <input type="file" id="file" name="file" multiple @change="windimg" class="file"> 
+            </a>
+              
               <div style="height: 20px;width: 20px;">
                 <img :src=windimgsrc alt="" style="height: 30px;width: 30px;">
               </div>
@@ -147,7 +150,7 @@
       <!-- 编辑课程 -->
 
           <el-dialog title="编辑你的课程" :visible.sync="editdialogVisible" width="50%" :before-close="handleClose" close-on-click-modal>
-          <div class="found_course_info">
+          <div class="found_course_info" style="margin: 10px 0">
               <el-select v-model="coursegname" placeholder="请选择授课班级">
                 <el-option
                 v-for="item in coursegnamedata"
@@ -521,6 +524,8 @@ export default {
 .coursemanage {
   height: auto;
 
+
+  
   .headtool {
     height: 100px;
     .searchtool {
@@ -530,6 +535,7 @@ export default {
       width: 200px;
       line-height: 100px;
       float: left;
+      
     }
     .createtool {
        height: 20px;
@@ -551,6 +557,27 @@ export default {
     }
   }
 }
+
+.filelist {
+        display: block;
+        width: 60px;
+        height: 40px;
+        float: left;
+        background: url('../../assets/resources_images/updir.png') no-repeat;
+        background-size: contain;
+        overflow: hidden;
+        .file {
+            width: 60px;
+            height: 20px;
+            cursor:pointer;
+            font-size:0;
+            opacity:0;
+            border: 1px solid #333;
+        
+            background-color: #fff;
+        }
+
+    }
 
 
 
