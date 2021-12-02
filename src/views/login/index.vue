@@ -142,7 +142,7 @@ export default {
               type: 'warning',
             });
              localStorage.removeItem('User-Token');
-             window.location.href = 'http://hcs998.top/login'
+             window.location.href = 'http://hcs998.top'
           }
         })
     },
