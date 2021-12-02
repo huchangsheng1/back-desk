@@ -61,7 +61,6 @@ export default {
   
     power().then((res) => { 
       res.data.forEach((val,key) => {
-        
         if (val) {
             let adddd = allMenus[val["p_name"]].children;
             let valchild = val.children
