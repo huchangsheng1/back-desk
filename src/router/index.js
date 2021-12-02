@@ -88,47 +88,8 @@ export const constantRoutes = [
         component: () => import('@/views/classmanagement/index'), // Parent router-view
         name: 'Menu1',
         meta: { title: '班级管理' },
-        // children: [
-        //   {
-        //     path: 'logerlist',
-        //     component: () => import('@/views/classmanagement/Classdetails.vue'), 
-        //     name: 'Menu1',
-        //     meta: { title: '日志管理' },
-        //   },
-        // ]
       }
     ]
-  },
-  {
-    path: '/workmanager',
-    component: Layout,
-    redirect: '/workmanager/list',
-    name: 'Nested',
-    meta: {
-      title: '作业管理',
-      icon: 'table'
-    },
-    children: [
-      {
-        path: 'list',
-        component: () => import('@/views/work/index'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: '作业列表' },
-      },
-      
-    ]
-  },
-  {
-    path: '/Publishjob',
-    component: Layout,
-    name: 'Publishjob',
-    component: () => import('@/views/work/Publishjob'), // Parent router-view
-  },
-  {
-    path: '/Correctingwork',
-    component: Layout,
-    name: 'Correctingwork',
-    component: () => import('@/views/work/Correctingwork'), // Parent router-view
   },
   {
     path: '/testmanager',
